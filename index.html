@@ -81,6 +81,15 @@ section{min-height:100vh}
   max-width:450px;
   box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
+.note h4{
+  font-size:1.5rem;
+  margin-bottom:12px;
+}
+.note p{
+  font-size:1.1rem;
+  line-height:1.8;
+  color:#333;
+}
 .photos{
   display:flex;
   gap:20px;
@@ -105,9 +114,26 @@ section{min-height:100vh}
 .video-box,.letter{width:50%}
 .video-box video{width:100%;height:100%;object-fit:cover}
 .letter{
-  padding:50px;
-  font-size:1.4rem;
-  line-height:1.7;
+  padding:60px 50px;
+  font-size:1.3rem;
+  line-height:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.letter h2{
+  font-size:3rem;
+  margin-bottom:30px;
+  font-weight:300;
+}
+.letter p{
+  color:#333;
+  margin-bottom:16px;
+}
+.letter .sign{
+  margin-top:30px;
+  font-style:italic;
+  font-size:1.5rem;
 }
 
 .reveal{
@@ -150,6 +176,7 @@ section{min-height:100vh}
   .video-box,.letter{width:100%}
   .polaroid{width:130px;height:160px}
   .rank-section{padding:25px}
+  .letter{padding:35px 25px}
 }
 
 </style>
@@ -170,19 +197,28 @@ section{min-height:100vh}
   <div id="collage"></div>
   <div class="collage-overlay"></div>
   <div class="center-text reveal">
-    <div class="big">what</div>
+    <div class="big">What</div>
     <h2>things you get when<br>you turn</h2>
     <div class="big">20</div>
   </div>
 </section>
 
 <section class="rank-section reveal">
-  <h2>Rank 2</h2>
+  <h2>Raisya</h2>
   <h3>Through Consistency!!</h3>
   <div class="rank-grid">
     <div class="note">
-      <h4>Pesan</h4>
-      <p>Keja sayang Raisya.</p>
+      <h4>Untuk Raisya,</h4>
+      <p>
+        Dua puluh bukan sekadar angka —<br>
+        ia adalah bukti bahwa kamu telah melewati<br>
+        setiap hari dengan caramu sendiri.<br><br>
+        Tetap jadi dirimu yang gigih,<br>
+        yang tidak pernah berhenti meski lelah.<br>
+        Semoga di usia ini, semua yang kamu tanam<br>
+        mulai tumbuh menjadi hal-hal indah<br>
+        yang belum pernah kamu bayangkan sebelumnya.
+      </p>
     </div>
     <div class="photos">
       <img id="p1" class="polaroid rot1" alt="foto 1">
@@ -199,8 +235,29 @@ section{min-height:100vh}
     </video>
   </div>
   <div class="letter reveal">
-    <h2>Happy Birthday</h2>
-    <p>gua gatau ini tulis apaan.</p>
+    <h2>Happy Birthday, Raisya.</h2>
+    <p>
+      Dua puluh tahun yang lalu, dunia kedatangan seseorang
+      yang ternyata punya cara tersendiri untuk membuat
+      orang-orang di sekitarnya merasa berarti.
+    </p>
+    <p>
+      Kamu mungkin tidak selalu tahu betapa besar dampakmu —
+      tapi percayalah, ada momen-momen kecil yang
+      tidak terlupakan karena ada kamu di dalamnya.
+    </p>
+    <p>
+      Di usia dua puluh ini, semoga kamu lebih berani
+      bermimpi, lebih ringan melangkah,
+      dan lebih sering bersyukur untuk hal-hal
+      yang selama ini diam-diam menemanimu.
+    </p>
+    <p>
+      Selamat menjadi dua puluh.
+      Semoga tahun ini menjadi salah satu yang paling
+      indah dalam hidupmu.
+    </p>
+    <div class="sign">— dengan tulus 🤍</div>
   </div>
 </section>
 
@@ -209,95 +266,45 @@ section{min-height:100vh}
 
 <script>
 
-// =====================================================
-// PANDUAN PENGISIAN FOTO & VIDEO
-// =====================================================
-//
-// Cara mendapatkan direct link Google Drive:
-// 1. Buka file di Google Drive
-// 2. Klik kanan → "Dapatkan link" → ubah akses ke "Siapa saja dengan link"
-// 3. Salin FILE_ID dari link: drive.google.com/file/d/FILE_ID/view
-// 4. Pakai format: "https://drive.google.com/uc?export=view&id=1oEHueOKhFrEuQAR1EKEAvQNo7ZrQ_60W"
-// https://drive.google.com/file/d/1oEHueOKhFrEuQAR1EKEAvQNo7ZrQ_60W/view?usp=sharing
-// =====================================================
+const coverPhoto = "https://i.ibb.co/Mxg4hFwg/original-2026-03-30-201948-EB1-FCD6007-D5.jpg";
 
-// --- FOTO COVER (1 foto) ---
-const coverPhoto = "https://i.ibb.co.com/Mxg4hFwg/original-2026-03-30-201948-EB1-FCD6007-D5.jpghttps://ibb.co.com/LX0WPVj0";
-
-// --- FOTO COLLAGE (isi sebanyak yang kamu mau, minimal 10 supaya penuh) ---
-// Setiap foto akan ditampilkan 1x secara berurutan, tidak berulang kecuali
-// foto habis (collage butuh banyak slot, jadi akan loop dari awal jika kurang)
 const collagePhotos = [
-  "https://i.ibb.co.com/3ywbq8Jc/IMG-9957.jpg",
-  "https://i.ibb.co.com/mF0f6spF/IMG-1464.jpg",
-  "https://i.ibb.co.com/pj10BTYB/fcdd3dc4-ff63-4ff7-b4a5-33a9c35f4f62.jpg",
-  "https://i.ibb.co.com/HLQpR6W2/fa994086-5289-40cf-ab53-cf9263825554.jpg",
-  "https://i.ibb.co.com/5Wv7NyMT/F38-ED351-90-CF-47-A3-BF59-3-F2-A73-E83590.jpg",
-  "https://ibb.co.com/674TT321",
-  "https://ibb.co.com/5W0WZ3vH",
-  "https://i.ibb.co.com/99wTvv03/e7c52fca-944f-47d2-989b-568ee609aa2f.jpg",
-  "https://ibb.co.com/ns8Jm9Py",
-  "https://ibb.co.com/B5QV9FRn",
-  "https://i.ibb.co.com/Gfx9Fbpb/c72d712a-7606-4774-a0ab-819a808307c6.jpg",
-  "https://i.ibb.co.com/G4BwWZrD/c4190145-abd0-4ee1-bcdd-6cf29d20371b.jpg",
-  "https://i.ibb.co.com/tpJrQ6HN/a0f90afb-cfa9-482b-9b2b-d5c29dec4c90.jpg",
-  "https://i.ibb.co.com/wZS3yR46/a2e49d3d-e9e8-4451-8b12-771d44732d83.jpg",
-  "https://i.ibb.co.com/XZQWqBHt/34541cd5-a5ae-43d2-875b-ab64873cc44d.jpg",
-  "https://i.ibb.co.com/99wTvv03/e7c52fca-944f-47d2-989b-568ee609aa2f.jpg",
-  "https://ibb.co.com/ns8Jm9Py",
-  "https://ibb.co.com/B5QV9FRn",
-  "https://i.ibb.co.com/Gfx9Fbpb/c72d712a-7606-4774-a0ab-819a808307c6.jpg",
-  "https://i.ibb.co.com/G4BwWZrD/c4190145-abd0-4ee1-bcdd-6cf29d20371b.jpg",
-  "https://i.ibb.co.com/tpJrQ6HN/a0f90afb-cfa9-482b-9b2b-d5c29dec4c90.jpg",
-  "https://i.ibb.co.com/wZS3yR46/a2e49d3d-e9e8-4451-8b12-771d44732d83.jpg",
-  "https://i.ibb.co.com/XZQWqBHt/34541cd5-a5ae-43d2-875b-ab64873cc44d.jpg",
-  "https://i.ibb.co.com/99wTvv03/e7c52fca-944f-47d2-989b-568ee609aa2f.jpg",
-  "https://ibb.co.com/ns8Jm9Py",
-  "https://ibb.co.com/B5QV9FRn",
-  "https://i.ibb.co.com/Gfx9Fbpb/c72d712a-7606-4774-a0ab-819a808307c6.jpg",
-  "https://i.ibb.co.com/G4BwWZrD/c4190145-abd0-4ee1-bcdd-6cf29d20371b.jpg",
-  "https://i.ibb.co.com/tpJrQ6HN/a0f90afb-cfa9-482b-9b2b-d5c29dec4c90.jpg",
-  "https://i.ibb.co.com/wZS3yR46/a2e49d3d-e9e8-4451-8b12-771d44732d83.jpg",
-  "https://i.ibb.co.com/XZQWqBHt/34541cd5-a5ae-43d2-875b-ab64873cc44d.jpg",
-
-  // Tambah terus di sini...
+  "https://i.ibb.co/3ywbq8Jc/IMG-9957.jpg",
+  "https://i.ibb.co/mF0f6spF/IMG-1464.jpg",
+  "https://i.ibb.co/pj10BTYB/fcdd3dc4-ff63-4ff7-b4a5-33a9c35f4f62.jpg",
+  "https://i.ibb.co/HLQpR6W2/fa994086-5289-40cf-ab53-cf9263825554.jpg",
+  "https://i.ibb.co/5Wv7NyMT/F38ED351-90CF-47A3-BF59-3F2A73E83590.jpg",
+  "https://i.ibb.co/99wTvv03/e7c52fca-944f-47d2-989b-568ee609aa2f.jpg",
+  "https://i.ibb.co/Gfx9Fbpb/c72d712a-7606-4774-a0ab-819a808307c6.jpg",
+  "https://i.ibb.co/G4BwWZrD/c4190145-abd0-4ee1-bcdd-6cf29d20371b.jpg",
+  "https://i.ibb.co/tpJrQ6HN/a0f90afb-cfa9-482b-9b2b-d5c29dec4c90.jpg",
+  "https://i.ibb.co/wZS3yR46/a2e49d3d-e9e8-4451-8b12-771d44732d83.jpg",
+  "https://i.ibb.co/XZQWqBHt/34541cd5-a5ae-43d2-875b-ab64873cc44d.jpg",
+  
 ];
 
-// --- FOTO POLAROID di section Rank (3 foto berbeda) ---
+// FOTO POLAROID (3 foto)
 const polaroidPhotos = [
-  "https://i.ibb.co.com/SWghfXF/0c014125-84cc-474f-a78a-1b83cde0fcc9.jpg",
-  "https://i.ibb.co.com/SXZfYMt9/23685ef1-0a7a-41c6-81a9-dc4e3cee465c.jpg",
-  "https://i.ibb.co.com/nNv2Gf3x/bca7ab67-2765-4d42-af6d-2fe86ee32ba6.jpg",
+  "https://i.ibb.co/SWghfXF/0c014125-84cc-474f-a78a-1b83cde0fcc9.jpg",
+  "https://i.ibb.co/SXZfYMt9/23685ef1-0a7a-41c6-81a9-dc4e3cee465c.jpg",
+  "https://i.ibb.co/nNv2Gf3x/bca7ab67-2765-4d42-af6d-2fe86ee32ba6.jpg",
 ];
 
-// --- VIDEO ---
-// Untuk video Google Drive, ubah link share jadi:
-// https://drive.google.com/uc?export=download&id=FILE_ID
 const videoUrl = "https://drive.google.com/uc?export=download&id=GANTI_DENGAN_VIDEO_FILE_ID";
 
-// --- MUSIK (opsional) ---
-// Bisa pakai link langsung ke file .mp3
-// Contoh dari Google Drive: "https://drive.google.com/uc?export=download&id=FILE_ID_MUSIK"
-const musicUrl = "https://drive.google.com/file/d/1lU8DLy6dUnBWkNklQxAYYrikiEedddS0/view?usp=drive_link"; // Isi jika ada, kosongkan jika tidak
+const musicUrl = "https://drive.google.com/uc?export=download&id=1lU8DLy6dUnBWkNklQxAYYrikiEedddS0";
 
-// =====================================================
-// KODE (tidak perlu diubah di bawah ini)
-// =====================================================
-
-// Cover photo
 document.getElementById('coverPhoto').src = coverPhoto;
-
-// Polaroid photos
 document.getElementById('p1').src = polaroidPhotos[0];
 document.getElementById('p2').src = polaroidPhotos[1];
 document.getElementById('p3').src = polaroidPhotos[2];
 
-// Collage — isi 40 slot, urut dari awal, baru wrap jika foto habis
+// Collage
 const collage = document.getElementById('collage');
 const TOTAL_SLOTS = 40;
 for (let i = 0; i < TOTAL_SLOTS; i++) {
   const img = document.createElement('img');
-  img.src = collagePhotos[i % collagePhotos.length]; // wrap hanya jika foto < 40
+  img.src = collagePhotos[i % collagePhotos.length];
   img.alt = `foto ${i + 1}`;
   collage.appendChild(img);
 }
@@ -308,9 +315,8 @@ document.querySelector('video').load();
 
 // Musik
 const bgMusic = document.getElementById('bgMusic');
-if (musicUrl) {
-  bgMusic.src = musicUrl;
-}
+if (musicUrl) bgMusic.src = musicUrl;
+
 const musicBtn = document.getElementById('musicBtn');
 let playing = false;
 musicBtn.addEventListener('click', () => {
@@ -319,7 +325,7 @@ musicBtn.addEventListener('click', () => {
     bgMusic.pause();
     musicBtn.textContent = '♪';
   } else {
-    bgMusic.play();
+    bgMusic.play().catch(() => {});
     musicBtn.textContent = '⏸';
   }
   playing = !playing;
@@ -328,9 +334,7 @@ musicBtn.addEventListener('click', () => {
 // Scroll reveal
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
+    if (entry.isIntersecting) entry.target.classList.add('show');
   });
 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
